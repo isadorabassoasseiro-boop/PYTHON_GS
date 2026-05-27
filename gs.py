@@ -397,7 +397,7 @@ def relatorio():
 
 def main():
     while True:
-        titulo('AGROSAT MONITOR')
+        titulo('ORBITGUARD')
 
         print('1 - Descrição da solução')
         print('2 - Cadastrar dados da plantação')
