@@ -28,11 +28,12 @@ def subtitulo(texto):
     print('-' * 50)
 
 def descricaosolucao():
-    texto = ("O ORBITGUARD é uma solução focada na agricultura de precisão.\n"
-                 "Ele monitora dados climáticos como temperatura, umidade e previsão de chuva.\n"
-                 "Através de análises automatizadas, o sistema avalia riscos agrícolas do solo.\n"
-                 "Por fim, gera recomendações preventivas para otimizar o manejo de água e plantio.\n"
-                 "Uma ferramenta essencial para mitigar perdas e combater a seca no campo.")
+    texto = ("O projeto Orbitguard analisa dados climáticos para apoiar a produção agrícola.\n"
+        "O sistema cadastra plantações e avalia riscos de temperatura, umidade e chuva.\n"
+        "Com base nas análises, gera recomendações agrícolas para reduzir perdas.\n"
+        "A solução usa listas e funções em Python para organizar informações.\n"
+        "Assim, contribui para prevenir desastres naturais e proteger a produção agrícola."
+    )
     return texto
 
 def cadastro():
