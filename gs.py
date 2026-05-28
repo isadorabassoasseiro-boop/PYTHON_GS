@@ -1,5 +1,5 @@
 listnumeracao = []
-listplantil = []
+listplantacao = []
 listtemperatura = []
 listumidade = []
 listquantidadechuva = []
@@ -44,14 +44,14 @@ def cadastro():
         return 'Essa numeração já existe!'
 
     else:
-        plantil = input('Nome do plantil: ')
+        plantacao = input('Nome da plantação: ')
         temperatura = float(input('Temperatura: '))
         umidade = float(input('Umidade do solo: '))
         quantidadechuva = float(input('Chuva prevista: '))
         regiao = input('Região: ')
 
         listnumeracao.append(numeracao)
-        listplantil.append(plantil)
+        listplantacao.append(plantacao)
         listtemperatura.append(temperatura)
         listumidade.append(umidade)
         listquantidadechuva.append(quantidadechuva)
@@ -68,7 +68,7 @@ def cadastro():
 
         titulo('PLANTAÇÃO CADASTRADA')
 
-        return (f'Plantil: {listplantil[-1]}\n'
+        return (f'Plantação: {listplantacao[-1]}\n'
                 f'Temperatura: {listtemperatura[-1]}°C\n'
                 f'Umidade do solo: {listumidade[-1]}%\n'
                 f'Chuva prevista: {listquantidadechuva[-1]}%\n'
@@ -80,17 +80,17 @@ def analiseclimatica():
 
     for i in range(len(listnumeracao)):
         print(f'Cadastro #{listnumeracao[i]}')
-        print(f'Plantil: {listplantil[i]}')
+        print(f'Plantação: {listplantacao[i]}')
         linha()
 
     opcao = int(input('\nDigite a numeração do cadastro que deseja analisar(Use apenas números inteiros): '))
 
     if opcao in listnumeracao:
         indice = listnumeracao.index(opcao)
-        print(f'\nPlantil: {listplantil[indice]}')
+        print(f'\nPlantação: {listplantacao[indice]}')
         print(f'Temperatura: {listtemperatura[indice]}°C')
         print(f'Umidade: {listumidade[indice]}%')
-        print(f'Quantidade: {listquantidadechuva[indice]}%')
+        print(f'Chuva prevista: {listquantidadechuva[indice]}%')
 
         if listtemperatura[indice] > 35:
             analisetemperatura = 'Alta'
@@ -245,7 +245,7 @@ def analiseclimatica():
         return (f'\n{"=" * 50}\n'
                 f'RESULTADO DA ANÁLISE CLIMÁTICA\n'
                 f'{"=" * 50}\n'
-                f'Plantil: {listplantil[indice]}\n'
+                f'Plantação: {listplantacao[indice]}\n'
                 f'Temperatura: {analisetemperatura}\n'
                 f'Umidade: {analiseumidade}\n'
                 f'Chuva: {analisequantidadechuva}\n'
@@ -263,17 +263,17 @@ def desastresnaturais():
 
     for i in range(len(listnumeracao)):
         print(f'Cadastro #{listnumeracao[i]}')
-        print(f'Plantil: {listplantil[i]}')
+        print(f'Plantação: {listplantacao[i]}')
         linha()
 
     opcao = int(input('\nDigite a numeração do cadastro que deseja analisar(Use apenas números inteiros): '))
 
     if opcao in listnumeracao:
         indice = listnumeracao.index(opcao)
-        print(f'\nPlantil: {listplantil[indice]}')
+        print(f'\nPlantação: {listplantacao[indice]}')
         print(f'Temperatura: {listtemperatura[indice]}°C')
         print(f'Umidade: {listumidade[indice]}%')
-        print(f'Quantidade: {listquantidadechuva[indice]}%')
+        print(f'Chuva prevista: {listquantidadechuva[indice]}%')
 
         if listinterpretacao[indice] == 'Forte risco de seca agrícola e estresse hídrico':
             desastrenatural = 'Seca agrícola severa'
@@ -364,13 +364,13 @@ def desastresnaturais():
         return (f'\n{"=" * 50}\n'
                 f'RESULTADO DA ANÁLISE DE DESASTRE NATURAL\n'
                 f'{"=" * 50}\n'
-                f'Plantil: {listplantil[indice]}\n'
+                f'Plantação: {listplantacao[indice]}\n'
                 f'Temperatura: {listanalisetemperatura[indice]}\n'
                 f'Umidade: {listanaliseumidade[indice]}\n'
                 f'Chuva: {listanalisequantidadechuva[indice]}\n'
                 f'\nRisco geral: {listrisco[indice]}\n'
                 f'Interpretação: {listinterpretacao[indice]}\n'
-                f'\nDesastre natural indentificado: {desastrenatural}\n'
+                f'\nDesastre natural identificado: {desastrenatural}\n'
                 f'{"=" * 50}')
     else:
          return '\nNenhum cadastro encontrado para fazer a análise.'
@@ -382,7 +382,7 @@ def recomendacoa():
 
     for i in range(len(listnumeracao)):
         print(f'Cadastro #{listnumeracao[i]}')
-        print(f'Plantil: {listplantil[i]}')
+        print(f'Plantação: {listplantacao[i]}')
         linha()
 
     opcao = int(input('\nDigite a numeração do cadastro para gerar recomendação(Use apenas números inteiros): '))
@@ -477,7 +477,7 @@ def recomendacoa():
         return (f'\n{"=" * 50}\n'
                 f'RECOMENDAÇÃO AGRÍCOLA\n'
                 f'{"=" * 50}\n'
-                f'Plantil: {listplantil[indice]}\n'
+                f'Plantação: {listplantacao[indice]}\n'
                 f'Risco geral: {listrisco[indice]}\n'
                 f'Desastre natural: {listanalisedesastre[indice]}\n'
                 f'\nRecomendação:\n{recomendacaoagr}\n'
@@ -495,7 +495,7 @@ def relatorio():
 
     for i in range(len(listnumeracao)):
         print(f'Cadastro #{listnumeracao[i]}')
-        print(f'Plantil: {listplantil[i]}')
+        print(f'Plantação: {listplantacao[i]}')
         print(f'Região: {listregiao[i]}')
         print(f'Temperatura: {listtemperatura[i]}°C')
         print(f'Umidade do solo: {listumidade[i]}%')
