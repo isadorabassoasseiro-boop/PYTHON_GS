@@ -13,6 +13,8 @@ listinterpretacao  = []
 
 listrecomendacao = []
 
+listanalisedesastre = []
+
 def linha():
     print('-' * 50)
 
@@ -26,7 +28,12 @@ def subtitulo(texto):
     print('-' * 50)
 
 def descricaosolucao():
-    return 'teste'
+    texto = ("O ORBITGUARD é uma solução focada na agricultura de precisão.\n"
+                 "Ele monitora dados climáticos como temperatura, umidade e previsão de chuva.\n"
+                 "Através de análises automatizadas, o sistema avalia riscos agrícolas do solo.\n"
+                 "Por fim, gera recomendações preventivas para otimizar o manejo de água e plantio.\n"
+                 "Uma ferramenta essencial para mitigar perdas e combater a seca no campo.")
+    return texto
 
 def cadastro():
 
@@ -56,6 +63,8 @@ def cadastro():
         listanalisequantidadechuva.append('')
         listrecomendacao.append('')
 
+        listanalisedesastre.append('')
+
         titulo('PLANTAÇÃO CADASTRADA')
 
         return (f'Plantil: {listplantil[-1]}\n'
@@ -66,7 +75,7 @@ def cadastro():
 
 def analiseclimatica():
 
-    titulo('CADASTROS DISPONÍVEIS')
+    titulo('CADASTROS DISPONÍVEIS PARA ANÁLISE')
 
     for i in range(len(listnumeracao)):
         print(f'Cadastro #{listnumeracao[i]}')
@@ -85,7 +94,7 @@ def analiseclimatica():
         if listtemperatura[indice] > 35:
             analisetemperatura = 'Alta'
 
-        elif listtemperatura[indice] > 28 and listtemperatura[indice] < 35:
+        elif listtemperatura[indice] >= 28 and listtemperatura[indice] <= 35:
             analisetemperatura = 'Moderado'
 
         else:
@@ -94,7 +103,7 @@ def analiseclimatica():
         if listumidade[indice] < 30:
             analiseumidade = 'Baixo'
 
-        elif listumidade[indice] > 30 and listumidade[indice] < 50:
+        elif listumidade[indice] >= 30 and listumidade[indice] <= 50:
             analiseumidade = 'Moderado'
 
         else:
@@ -243,6 +252,124 @@ def analiseclimatica():
     else:
         return '\nNenhum cadastro encontrado para fazer a análise.'
 
+def desastresnaturais():
+
+    titulo('CADASTROS DISPONÍVEIS PARA ANÁLISE')
+
+    for i in range(len(listnumeracao)):
+        print(f'Cadastro #{listnumeracao[i]}')
+        print(f'Plantil: {listplantil[i]}')
+        linha()
+
+    opcao = int(input('\nDigite a numeração do cadastro que deseja analisar: '))
+
+    if opcao in listnumeracao:
+        indice = listnumeracao.index(opcao)
+        print(f'\nPlantil: {listplantil[indice]}')
+        print(f'Temperatura: {listtemperatura[indice]}°C')
+        print(f'Umidade: {listumidade[indice]}%')
+        print(f'Quantidade: {listquantidadechuva[indice]}%')
+
+        if listinterpretacao[indice] == 'Forte risco de seca agrícola e estresse hídrico':
+            desastrenatural = 'Seca agrícola severa'
+
+        elif listinterpretacao[indice] == 'Calor elevado e solo seco, com necessidade de irrigação':
+            desastrenatural = 'Onda de calor agrícola'
+
+        elif listinterpretacao[indice] == 'Calor elevado com solo seco, mas há risco de chuva intensa':
+            desastrenatural = 'Erosão após solo ressecado'
+
+        elif listinterpretacao[indice] == 'Temperatura elevada e pouca chuva podem iniciar seca agrícola':
+            desastrenatural = 'Estiagem inicial'
+
+        elif listinterpretacao[indice] == 'Possível estresse térmico, mas com condições parcialmente controladas':
+            desastrenatural = 'Estresse térmico agrícola'
+
+        elif listinterpretacao[indice] == 'Temperatura elevada associada a chuva intensa pode afetar o solo':
+            desastrenatural = 'Tempestade agrícola'
+
+        elif listinterpretacao[indice] == 'Calor elevado, mas a umidade ainda reduz o risco imediato de seca':
+            desastrenatural = 'Calor úmido'
+
+        elif listinterpretacao[indice] == 'Temperatura elevada com boa disponibilidade de umidade no solo':
+            desastrenatural = 'Ambiente propício a pragas'
+
+        elif listinterpretacao[indice] == 'Calor e excesso de água podem favorecer doenças e encharcamento':
+            desastrenatural = 'Fungos e encharcamento'
+
+        elif listinterpretacao[indice] == 'Solo seco e baixa chuva indicam risco de seca agrícola':
+            desastrenatural = 'Estiagem agrícola'
+
+        elif listinterpretacao[indice] == 'Solo seco, mas com alguma previsão de chuva':
+            desastrenatural = 'Déficit hídrico moderado'
+
+        elif listinterpretacao[indice] == 'Solo seco com chuva intensa pode gerar erosão e perda de nutrientes':
+            desastrenatural = 'Erosão do solo'
+
+        elif listinterpretacao[indice] == 'Baixa chuva exige acompanhamento da umidade do solo':
+            desastrenatural = 'Estiagem leve'
+
+        elif listinterpretacao[indice] == 'Condições agrícolas estáveis e aceitáveis':
+            desastrenatural = 'Sem desastre identificado'
+
+        elif listinterpretacao[indice] == 'Chuva elevada exige atenção à drenagem do solo':
+            desastrenatural = 'Alagamento leve'
+
+        elif listinterpretacao[indice] == 'Boa umidade do solo mesmo com baixa chuva prevista':
+            desastrenatural = 'Sem desastre imediato'
+
+        elif listinterpretacao[indice] == 'Condição favorável ao desenvolvimento da plantação':
+            desastrenatural = 'Sem desastre identificado'
+
+        elif listinterpretacao[indice] == 'Excesso de umidade e chuva pode favorecer doenças e encharcamento':
+            desastrenatural = 'Encharcamento agrícola'
+
+        elif listinterpretacao[indice] == 'Frio associado a solo seco e pouca chuva pode prejudicar a cultura':
+            desastrenatural = 'Frio seco agrícola'
+
+        elif listinterpretacao[indice] == 'Temperatura baixa e solo seco exigem acompanhamento':
+            desastrenatural = 'Estresse por frio'
+
+        elif listinterpretacao[indice] == 'Frio com chuva intensa pode prejudicar o solo e a cultura':
+            desastrenatural = 'Tempestade fria'
+
+        elif listinterpretacao[indice] == 'Temperatura baixa pode afetar culturas sensíveis':
+            desastrenatural = 'Geada leve / frio intenso'
+
+        elif listinterpretacao[indice] == 'Frio moderado exige atenção conforme a cultura plantada':
+            desastrenatural = 'Frio agrícola moderado'
+
+        elif listinterpretacao[indice] == 'Frio e chuva intensa podem causar encharcamento e prejudicar a cultura':
+            desastrenatural = 'Encharcamento com frio'
+
+        elif listinterpretacao[indice] == 'Temperatura baixa com umidade elevada pode favorecer doenças':
+            desastrenatural = 'Doenças fúngicas'
+
+        elif listinterpretacao[indice] == 'Frio e umidade elevada exigem acompanhamento da cultura':
+            desastrenatural = 'Frio úmido'
+
+        elif listinterpretacao[indice] == 'Frio, alta umidade e chuva intensa aumentam risco de doenças e encharcamento':
+            desastrenatural = 'Encharcamento severo / fungos'
+
+        else:
+            desastrenatural = 'Nenhum desastre natural específico encontrado. Verifique se a análise climática foi realizada corretamente.'
+
+        listanalisedesastre[indice] = desastrenatural
+
+        return (f'\n{"=" * 50}\n'
+                f'{"RESULTADO DA ANÁLISE DE DESASTRE NATURAL".center(50)}\n'
+                f'{"=" * 50}\n'
+                f'Plantil: {listplantil[indice]}\n'
+                f'Temperatura: {listtemperatura[indice]}\n'
+                f'Umidade: {listumidade[indice]}\n'
+                f'Chuva: {listquantidadechuva[indice]}\n'
+                f'\nRisco geral: {listrisco[indice]}\n'
+                f'Interpretação: {listinterpretacao[indice]}\n'
+                f'\nDesastre natural indentificado: {desastrenatural}\n'
+                f'{"=" * 50}')
+
+
+
 def recomendacoa():
 
     titulo('RECOMENDAÇÕES DISPONÍVEIS')
@@ -269,99 +396,97 @@ def recomendacoa():
         print(f'Risco geral da plantação: {listrisco[indice]} ')
         print(f'Interpretação da plantação: {listinterpretacao[indice]}')
 
-        if listrisco[indice] == 'Crítico' and listinterpretacao[indice] == 'Forte risco de seca agrícola e estresse hídrico':
-            recomendacaoagr = 'Emitir alerta crítico, priorizar irrigação e monitorar diariamente a plantação'
+        if listrisco[indice] == 'Crítico' and listanalisedesastre[indice] == 'Seca agrícola severa':
+            recomendacaoagr = 'Emitir alerta de seca severa, priorizar irrigação emergencial e monitorar diariamente a umidade do solo'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Calor elevado e solo seco, com necessidade de irrigação':
-            recomendacaoagr = 'Reforçar irrigação e acompanhar a previsão climática'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Onda de calor agrícola':
+            recomendacaoagr = 'Reforçar irrigação preventiva e intensificar o monitoramento contra onda de calor agrícola'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Calor elevado com solo seco, mas há risco de chuva intensa':
-            recomendacaoagr = 'Monitorar irrigação e preparar drenagem para possível chuva forte'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Erosão após solo ressecado':
+            recomendacaoagr = 'Preparar drenagem do solo e evitar manejo pesado, pois há risco de erosão após período seco'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Temperatura elevada e pouca chuva podem iniciar seca agrícola':
-            recomendacaoagr = 'Planejar uso de água e evitar plantio em curto prazo'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Estiagem inicial':
+            recomendacaoagr = 'Planejar uso racional da água e acompanhar possível evolução para estiagem agrícola'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Possível estresse térmico, mas com condições parcialmente controladas':
-            recomendacaoagr = 'Acompanhar temperatura e manter irrigação controlada'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Estresse térmico agrícola':
+            recomendacaoagr = 'Manter irrigação controlada e acompanhar sinais de estresse térmico na plantação'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Temperatura elevada associada a chuva intensa pode afetar o solo':
-            recomendacaoagr = 'Evitar irrigação extra e verificar drenagem do solo'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Tempestade agrícola':
+            recomendacaoagr = 'Evitar irrigação adicional e verificar áreas com risco de tempestade agrícola e erosão'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Calor elevado, mas a umidade ainda reduz o risco imediato de seca':
-            recomendacaoagr = 'Monitorar temperatura e manter acompanhamento da umidade'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Calor úmido':
+            recomendacaoagr = 'Monitorar o calor úmido e acompanhar a umidade do solo para evitar estresse futuro'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Temperatura elevada com boa disponibilidade de umidade no solo':
-            recomendacaoagr = 'Manter monitoramento climático e evitar irrigação excessiva'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Ambiente propício a pragas':
+            recomendacaoagr = 'Manter monitoramento climático e observar possível aumento de pragas em ambiente quente e úmido'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Calor e excesso de água podem favorecer doenças e encharcamento':
-            recomendacaoagr = 'Verificar drenagem e acompanhar sinais de doenças na cultura'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Fungos e encharcamento':
+            recomendacaoagr = 'Acionar manejo preventivo contra fungos, verificar drenagem e evitar excesso de água no solo'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Solo seco e baixa chuva indicam risco de seca agrícola':
-            recomendacaoagr = 'Acionar plano de irrigação e acompanhar previsão de chuva'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Estiagem agrícola':
+            recomendacaoagr = 'Acionar plano de irrigação e acompanhar a evolução da estiagem agrícola'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Solo seco, mas com alguma previsão de chuva':
-            recomendacaoagr = 'Monitorar o solo e aguardar confirmação da chuva prevista'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Déficit hídrico moderado':
+            recomendacaoagr = 'Monitorar o solo e aguardar confirmação da chuva antes de alterar o manejo da irrigação'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Solo seco com chuva intensa pode gerar erosão e perda de nutrientes':
-            recomendacaoagr = 'Preparar drenagem e evitar manejo pesado no solo'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Erosão do solo':
+            recomendacaoagr = 'Proteger o solo, preparar drenagem e evitar uso de máquinas para reduzir risco de erosão'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Baixa chuva exige acompanhamento da umidade do solo':
-            recomendacaoagr = 'Acompanhar umidade e planejar irrigação preventiva'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Estiagem leve':
+            recomendacaoagr = 'Acompanhar umidade do solo e planejar irrigação preventiva contra estiagem leve'
 
-        elif listrisco[indice] == 'Baixo' and listinterpretacao[indice] == 'Condições agrícolas estáveis e aceitáveis':
-            recomendacaoagr = 'Manter monitoramento periódico'
+        elif listrisco[indice] == 'Baixo' and listanalisedesastre[indice] == 'Sem desastre identificado':
+            recomendacaoagr = 'Manter monitoramento periódico, sem necessidade de ação emergencial'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Chuva elevada exige atenção à drenagem do solo':
-            recomendacaoagr = 'Verificar drenagem e evitar excesso de irrigação'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Alagamento leve':
+            recomendacaoagr = 'Verificar drenagem e acompanhar pontos de acúmulo de água para evitar alagamento leve'
 
-        elif listrisco[indice] == 'Baixo' and listinterpretacao[indice] == 'Boa umidade do solo mesmo com baixa chuva prevista':
-            recomendacaoagr = 'Manter acompanhamento da umidade do solo'
+        elif listrisco[indice] == 'Baixo' and listanalisedesastre[indice] == 'Sem desastre imediato':
+            recomendacaoagr = 'Manter acompanhamento da umidade do solo, sem alerta de desastre imediato'
 
-        elif listrisco[indice] == 'Baixo' and listinterpretacao[indice] == 'Condição favorável ao desenvolvimento da plantação':
-            recomendacaoagr = 'Manter manejo atual e monitoramento climático'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Encharcamento agrícola':
+            recomendacaoagr = 'Melhorar drenagem e monitorar doenças fúngicas associadas ao encharcamento agrícola'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Excesso de umidade e chuva pode favorecer doenças e encharcamento':
-            recomendacaoagr = 'Melhorar drenagem e monitorar doenças fúngicas'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Frio seco agrícola':
+            recomendacaoagr = 'Verificar sensibilidade da cultura ao frio seco e manter irrigação controlada'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Frio associado a solo seco e pouca chuva pode prejudicar a cultura':
-            recomendacaoagr = 'Verificar sensibilidade da cultura e planejar irrigação controlada'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Estresse por frio':
+            recomendacaoagr = 'Monitorar o solo e proteger culturas sensíveis contra estresse por frio'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Temperatura baixa e solo seco exigem acompanhamento':
-            recomendacaoagr = 'Monitorar solo e proteger culturas sensíveis ao frio'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Tempestade fria':
+            recomendacaoagr = 'Evitar manejo no solo molhado e acompanhar risco de tempestade fria agrícola'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Frio com chuva intensa pode prejudicar o solo e a cultura':
-            recomendacaoagr = 'Evitar manejo no solo molhado e proteger culturas sensíveis'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Geada leve / frio intenso':
+            recomendacaoagr = 'Verificar sensibilidade da cultura e acompanhar risco de geada leve ou frio intenso'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Temperatura baixa pode afetar culturas sensíveis':
-            recomendacaoagr = 'Verificar sensibilidade da cultura plantada'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Frio agrícola moderado':
+            recomendacaoagr = 'Acompanhar temperatura e avaliar necessidade de proteção para culturas sensíveis'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Frio moderado exige atenção conforme a cultura plantada':
-            recomendacaoagr = 'Acompanhar temperatura e avaliar proteção da cultura'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Encharcamento com frio':
+            recomendacaoagr = 'Verificar drenagem, evitar operações no solo e monitorar encharcamento com frio'
 
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Frio e chuva intensa podem causar encharcamento e prejudicar a cultura':
-            recomendacaoagr = 'Verificar drenagem e evitar operações no solo'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Doenças fúngicas':
+            recomendacaoagr = 'Monitorar doenças fúngicas e evitar excesso de água em condição de frio úmido'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Temperatura baixa com umidade elevada pode favorecer doenças':
-            recomendacaoagr = 'Monitorar doenças e evitar excesso de água'
+        elif listrisco[indice] == 'Moderado' and listanalisedesastre[indice] == 'Frio úmido':
+            recomendacaoagr = 'Acompanhar desenvolvimento da cultura e monitorar sinais de frio úmido'
 
-        elif listrisco[indice] == 'Moderado' and listinterpretacao[indice] == 'Frio e umidade elevada exigem acompanhamento da cultura':
-            recomendacaoagr = 'Acompanhar desenvolvimento da cultura e monitorar umidade'
-
-        elif listrisco[indice] == 'Alto' and listinterpretacao[indice] == 'Frio, alta umidade e chuva intensa aumentam risco de doenças e encharcamento':
-            recomendacaoagr = 'Melhorar drenagem, evitar manejo no solo e monitorar doenças'
+        elif listrisco[indice] == 'Alto' and listanalisedesastre[indice] == 'Encharcamento severo / fungos':
+            recomendacaoagr = 'Melhorar drenagem, evitar manejo no solo e monitorar doenças associadas ao encharcamento severo'
 
         else:
-            recomendacaoagr = 'Nenhuma recomendação específica encontrada. Verifique se a análise climática foi realizada corretamente.'
+            recomendacaoagr = 'Nenhuma recomendação específica encontrada. Faça primeiro a análise climática e a análise de desastres naturais.'
 
         listrecomendacao[indice] = recomendacaoagr
 
-    return (f'\n{"=" * 50}\n'
-            f'{"RECOMENDAÇÃO AGRÍCOLA".center(50)}\n'
-            f'{"=" * 50}\n'
-            f'Plantil: {listplantil[indice]}\n'
-            f'Risco geral: {listrisco[indice]}\n'
-            f'\nRecomendação:\n{recomendacaoagr}\n'
-            f'{"=" * 50}')
+        return (f'\n{"=" * 50}\n'
+                f'{"RECOMENDAÇÃO AGRÍCOLA".center(50)}\n'
+                f'{"=" * 50}\n'
+                f'Plantil: {listplantil[indice]}\n'
+                f'Risco geral: {listrisco[indice]}\n'
+                f'Desastre natural: {listanalisedesastre[indice]}\n'
+                f'\nRecomendação:\n{recomendacaoagr}\n'
+                f'{"=" * 50}')
 
 def relatorio():
 
@@ -386,6 +511,7 @@ def relatorio():
         subtitulo('Resultado')
         print(f'Risco geral: {listrisco[i]}')
         print(f'Interpretação: {listinterpretacao[i]}')
+        print(f'Desastre natural: {listanalisedesastre[i]}')
 
         subtitulo('Recomendação')
         print(f'{listrecomendacao[i]}')
@@ -402,8 +528,9 @@ def main():
         print('1 - Descrição da solução')
         print('2 - Cadastrar dados da plantação')
         print('3 - Analisar risco climático')
-        print('4 - Gerar recomendação agrícola')
-        print('5 - Exibir relatório geral')
+        print('4 - Analisar risco de desastre natural')
+        print('5 - Gerar recomendação agrícola')
+        print('6 - Exibir relatório geral')
         print('0 - Sair')
 
         opcao = int(input('\nDigite o código da opção desejada: '))
@@ -421,9 +548,12 @@ def main():
                 print(analiseclimatica())
 
             case 4:
-                print(recomendacoa())
+                print(desastresnaturais())
 
             case 5:
+                print(recomendacoa())
+
+            case 6:
                 print(relatorio())
 
             case 0:
