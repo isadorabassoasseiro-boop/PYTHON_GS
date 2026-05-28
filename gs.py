@@ -28,7 +28,7 @@ def subtitulo(texto):
     print('-' * 50)
 
 def descricaosolucao():
-    texto = ("O projeto Orbitguard analisa dados climáticos para apoiar a produção agrícola.\n"
+    texto = ("O projeto OrbitGuard Monitor analisa dados climáticos para apoiar a produção agrícola.\n"
         "O sistema cadastra plantações e avalia riscos de temperatura, umidade e chuva.\n"
         "Com base nas análises, gera recomendações agrícolas para reduzir perdas.\n"
         "A solução usa listas e funções em Python para organizar informações.\n"
@@ -524,7 +524,7 @@ def relatorio():
 
 def main():
     while True:
-        titulo('ORBITGUARD')
+        titulo('ORBITGUARD MONITOR')
 
         print('1 - Descrição da solução')
         print('2 - Cadastrar dados da plantação')
@@ -558,7 +558,7 @@ def main():
                 print(relatorio())
 
             case 0:
-                print('\nSistema encerrado. Obrigado por usar o AgroSat Monitor!')
+                print('\nSistema encerrado. Obrigado por usar o OrbitGuard Monitor!')
                 break
 
             case _:
