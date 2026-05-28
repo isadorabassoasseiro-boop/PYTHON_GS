@@ -20,11 +20,11 @@ def linha():
 
 def titulo(texto):
     print('\n' + '=' * 50)
-    print(texto.center(50))
+    print(texto)
     print('=' * 50)
 
 def subtitulo(texto):
-    print('\n' + texto.upper())
+    print('\n' + texto)
     print('-' * 50)
 
 def descricaosolucao():
@@ -38,7 +38,7 @@ def descricaosolucao():
 
 def cadastro():
 
-    numeracao = int(input('Informe uma numeração para este cadastro:'))
+    numeracao = int(input('Informe uma numeração para este cadastro(Use apenas números inteiros):'))
 
     if numeracao in listnumeracao:
         return 'Essa numeração já existe!'
@@ -47,7 +47,7 @@ def cadastro():
         plantil = input('Nome do plantil: ')
         temperatura = float(input('Temperatura: '))
         umidade = float(input('Umidade do solo: '))
-        quantidadechuva = float(input('Chuva prevista(porcentagem): '))
+        quantidadechuva = float(input('Chuva prevista: '))
         regiao = input('Região: ')
 
         listnumeracao.append(numeracao)
@@ -83,7 +83,7 @@ def analiseclimatica():
         print(f'Plantil: {listplantil[i]}')
         linha()
 
-    opcao = int(input('\nDigite a numeração do cadastro que deseja analisar: '))
+    opcao = int(input('\nDigite a numeração do cadastro que deseja analisar(Use apenas números inteiros): '))
 
     if opcao in listnumeracao:
         indice = listnumeracao.index(opcao)
@@ -235,11 +235,15 @@ def analiseclimatica():
             risco = 'Baixo'
             interpretacao = 'Condições climáticas estáveis'
 
+
+        listanalisetemperatura[indice] = analisetemperatura
+        listanaliseumidade[indice] = analiseumidade
+        listanalisequantidadechuva[indice] = analisequantidadechuva
         listrisco[indice] = risco
         listinterpretacao[indice] = interpretacao
 
         return (f'\n{"=" * 50}\n'
-                f'{"RESULTADO DA ANÁLISE CLIMÁTICA".center(50)}\n'
+                f'RESULTADO DA ANÁLISE CLIMÁTICA\n'
                 f'{"=" * 50}\n'
                 f'Plantil: {listplantil[indice]}\n'
                 f'Temperatura: {analisetemperatura}\n'
@@ -262,7 +266,7 @@ def desastresnaturais():
         print(f'Plantil: {listplantil[i]}')
         linha()
 
-    opcao = int(input('\nDigite a numeração do cadastro que deseja analisar: '))
+    opcao = int(input('\nDigite a numeração do cadastro que deseja analisar(Use apenas números inteiros): '))
 
     if opcao in listnumeracao:
         indice = listnumeracao.index(opcao)
@@ -358,17 +362,18 @@ def desastresnaturais():
         listanalisedesastre[indice] = desastrenatural
 
         return (f'\n{"=" * 50}\n'
-                f'{"RESULTADO DA ANÁLISE DE DESASTRE NATURAL".center(50)}\n'
+                f'RESULTADO DA ANÁLISE DE DESASTRE NATURAL\n'
                 f'{"=" * 50}\n'
                 f'Plantil: {listplantil[indice]}\n'
-                f'Temperatura: {listtemperatura[indice]}\n'
-                f'Umidade: {listumidade[indice]}\n'
-                f'Chuva: {listquantidadechuva[indice]}\n'
+                f'Temperatura: {listanalisetemperatura[indice]}\n'
+                f'Umidade: {listanaliseumidade[indice]}\n'
+                f'Chuva: {listanalisequantidadechuva[indice]}\n'
                 f'\nRisco geral: {listrisco[indice]}\n'
                 f'Interpretação: {listinterpretacao[indice]}\n'
                 f'\nDesastre natural indentificado: {desastrenatural}\n'
                 f'{"=" * 50}')
-
+    else:
+         return '\nNenhum cadastro encontrado para fazer a análise.'
 
 
 def recomendacoa():
@@ -380,22 +385,10 @@ def recomendacoa():
         print(f'Plantil: {listplantil[i]}')
         linha()
 
-    opcao = int(input('\nDigite a numeração do cadastro para gerar recomendação: '))
+    opcao = int(input('\nDigite a numeração do cadastro para gerar recomendação(Use apenas números inteiros): '))
 
     if opcao in listnumeracao:
         indice = listnumeracao.index(opcao)
-        print(f'\nPlantil: {listplantil[indice]}')
-        print(f'Temperatura: {listtemperatura[indice]}°C')
-        print(f'Umidade: {listumidade[indice]}%')
-        print(f'Quantidade: {listquantidadechuva[indice]}%')
-        print()
-        print('SITUAÇÃO CLIMÁTICA:')
-        print(f'A temperatura está: {listanalisetemperatura[indice]}')
-        print(f'A umidade está: {listanaliseumidade[indice]}%')
-        print(f'A chuva está: {listanalisequantidadechuva[indice]}')
-        print()
-        print(f'Risco geral da plantação: {listrisco[indice]} ')
-        print(f'Interpretação da plantação: {listinterpretacao[indice]}')
 
         if listrisco[indice] == 'Crítico' and listanalisedesastre[indice] == 'Seca agrícola severa':
             recomendacaoagr = 'Emitir alerta de seca severa, priorizar irrigação emergencial e monitorar diariamente a umidade do solo'
@@ -480,14 +473,18 @@ def recomendacoa():
 
         listrecomendacao[indice] = recomendacaoagr
 
+
         return (f'\n{"=" * 50}\n'
-                f'{"RECOMENDAÇÃO AGRÍCOLA".center(50)}\n'
+                f'RECOMENDAÇÃO AGRÍCOLA\n'
                 f'{"=" * 50}\n'
                 f'Plantil: {listplantil[indice]}\n'
                 f'Risco geral: {listrisco[indice]}\n'
                 f'Desastre natural: {listanalisedesastre[indice]}\n'
                 f'\nRecomendação:\n{recomendacaoagr}\n'
                 f'{"=" * 50}')
+
+    else:
+        return '\nNenhum cadastro encontrado para fazer a recomendação.'
 
 def relatorio():
 
@@ -534,30 +531,30 @@ def main():
         print('6 - Exibir relatório geral')
         print('0 - Sair')
 
-        opcao = int(input('\nDigite o código da opção desejada: '))
+        opcao = input('\nDigite o código da opção desejada: ')
 
         match opcao:
-            case 1:
+            case '1':
                 titulo('DESCRIÇÃO DA SOLUÇÃO')
                 print(descricaosolucao())
 
-            case 2:
+            case '2':
                 titulo('CADASTRO DE DADOS DA PLANTAÇÃO')
                 print(cadastro())
 
-            case 3:
+            case '3':
                 print(analiseclimatica())
 
-            case 4:
+            case '4':
                 print(desastresnaturais())
 
-            case 5:
+            case '5':
                 print(recomendacoa())
 
-            case 6:
+            case '6':
                 print(relatorio())
 
-            case 0:
+            case '0':
                 print('\nSistema encerrado. Obrigado por usar o OrbitGuard Monitor!')
                 break
 
